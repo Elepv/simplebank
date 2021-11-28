@@ -6,15 +6,23 @@ on:
 
 jobs:
 
-  build:
+  deploy:
     name: Build image
     runs-on: ubuntu-latest
 
     steps:
-        - uses: actions/checkout@master
-        - name: Publish to Registry
-          uses: elgohr/Publish-Docker-Github-Action@master
-          with:
-            name: vivishadow/simplebank-api
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v1
+      with:
+        version: 'v1.21.3'
+      id: install
+
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: vivishadow/simplebank-api
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
