@@ -9,7 +9,7 @@ RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.1/
 # Run stage
 FROM alpine:3.14
 WORKDIR /app
-RUN apk add --no-cache bash && /bin/bash
+# RUN apk add --no-cache bash && /bin/bash
 COPY --from=builder /app/main .
 COPY --from=builder /app/migrate ./migrate
 COPY app.env .
@@ -19,5 +19,5 @@ COPY db/migration ./migration
 
 EXPOSE 8080
 CMD [ "/app/main" ]
-ENTRYPOINT [ "bash", "/app/start.sh" ]
+ENTRYPOINT [ "sh", "/app/start.sh" ]
 # ENTRYPOINT [ "/app/start.sh" ]

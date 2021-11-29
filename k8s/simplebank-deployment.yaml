@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-bank-api
-        image: simplebank-api:test
+        image: vivishadow/simplebank-api:latest
         ports:
         - containerPort: 8080
         volumeMounts:             # 把下面挂载到Pod中的volume挂载到容器中
