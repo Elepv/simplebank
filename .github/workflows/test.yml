@@ -1,4 +1,4 @@
-name: ci-test
+name: Run unit tests
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:12
+        image: postgres:12-alpine
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: secret
@@ -29,13 +29,14 @@ jobs:
 
     steps:
 
-    - name: Check out code into the go module directory
-      uses: actions/checkout@v2
-
-    - name: Set up Go
+    - name: Set up Go 1.x
       uses: actions/setup-go@v2
       with:
-        go-version: 1.17
+        go-version: ^1.17.3 
+      id: go
+
+    - name: Check out code into the go module directory
+      uses: actions/checkout@v2
 
     - name: Install golang-migrate
       run: |
