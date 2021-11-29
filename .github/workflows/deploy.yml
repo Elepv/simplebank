@@ -14,12 +14,6 @@ jobs:
     - name: Check out code
       uses: actions/checkout@master
 
-    - name: Install kubectl
-      uses: azure/setup-kubectl@v1
-      with:
-        version: 'v1.21.3'
-      id: install
-
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
