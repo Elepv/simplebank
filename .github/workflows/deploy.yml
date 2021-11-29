@@ -20,4 +20,4 @@ jobs:
         name: vivishadow/simplebank-api
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        tags: v2
+        tags: latest
