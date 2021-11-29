@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-bank-api-deployment
+  labels:
+    app: simple-bank-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-bank-api
+  template:
+    metadata:
+      labels:
+        app: simple-bank-api
+    spec:
+      containers:
+      - name: simple-bank-api
+        image: vivishadow/simplebank-api:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:             # 把下面挂载到Pod中的volume挂载到容器中
+          - name: simple-bank-config
+            mountPath: /app
+          # - name: simple-bank-secret
+            # mountPath: /app
+            # readOnly: true
+
+
+      # 把配置文件挂载到Pod
+      volumes:
+        - name: simple-bank-config
+          configMap:
+            name: simple-bank-config
+        # - name: simple-bank-secret
+          # secret:
+            # secretName: simpebank-secret

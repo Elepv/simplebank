@@ -1,0 +1,31 @@
+#
+# Persistent Volume
+#
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv-volume
+  labels:
+    type: local
+    app: postgres
+spec:
+  capacity:
+    storage: 256Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: standard              # Storage class. A PV Claim requesting the same storageClass can be bound to this volume.
+  local:
+    path: /Users/cris/workspace/pv_data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - minikube
+  # hostPath:                                     # hostPath PersistentVolume is used for development and testing. It uses a file/directory on the Node to emulate network-attached storage
+    # path: "/Users/cris/workspace/pv_data"
+  #persistentVolumeReclaimPolicy: Delete
+  #persistentVolumeReclaimPolicy: Retain        # Retain the PV even after PVC is deleted.

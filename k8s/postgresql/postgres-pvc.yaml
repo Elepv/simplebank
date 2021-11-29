@@ -1,0 +1,18 @@
+#
+# Persistent Volume Claim
+#
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-pv-claim
+  labels:
+    type: local
+    app: postgres
+spec:
+  # storageClassName: manual
+  # volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 256Mi

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-bank-config
+  namespace: simplebank
+data:
+  app.env: |
+    DB_DRIVER=postgres
+    DB_SOURCE=postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable
+    SERVER_ADDRESS=0.0.0.0:8080
+    TOKEN_SYMMETRIC_KEY=9aefbf837c8d2d17e27f3806b6e173fb
+    ACCESS_TOKEN_DURATION=15m
