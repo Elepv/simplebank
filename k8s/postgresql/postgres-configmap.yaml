@@ -9,10 +9,3 @@ data:
   POSTGRES_DB: simple_bank
   POSTGRES_USER: root
   POSTGRES_PASSWORD: secret
-  # app.env 环境变量
-  # app.env: |
-    # DB_DRIVER=postgres
-    # DB_SOURCE=postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable
-    # SERVER_ADDRESS=0.0.0.0:8080
-    # TOKEN_SYMMETRIC_KEY=9aefbf837c8d2d17e27f3806b6e173fb
-    # ACCESS_TOKEN_DURATION=15m
